@@ -41,11 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: new Text('Header'),
     );
 
-    ListTile genNavItem(String text, String routeName) {
+    ListTile genNavItem(String text, var icon , String routeName) {
       return new ListTile(
         title: new Text(text),
+        leading: new Icon(icon),
         onTap: () {
           setState(() {
+            // Navigator.pop(context);
                       Navigator.of(context).pop();
                       Navigator.of(context).pushNamed(routeName);
                     });
@@ -55,8 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     var navChildren = [
       headerChild,
-      genNavItem('settings', '/'),
-      genNavItem('home', '/'),
+      genNavItem('设置', Icons.settings ,'/settings'),
     ];
 
     ListView listview = new ListView(
@@ -71,16 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
   // render主体
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
+    return new Scaffold(
         appBar: new AppBar(
           title: const Text('todo-list'),
-          leading: new IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              return _showDialog();
-            },
-          ),
           actions: <Widget>[
             new PopupMenuButton<Choice>(
               itemBuilder: (BuildContext context) {
@@ -94,9 +88,15 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        body: new TodoList(),
         drawer: _showNavDrawer(context),
-      ),
+        body: new TodoList(),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 50.0,
+            color: const Color(0xFF00FF00),
+            child: new TextField(),
+          ),
+        ),
     );
   }
 }

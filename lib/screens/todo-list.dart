@@ -6,6 +6,8 @@ class Todo {
   final String id;
 }
 
+enum SingingCharacter { todoCheckbox }
+
 class TodoList extends StatefulWidget{
   // @override
   // Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class TodoListState extends State<TodoList>{
   //   const Todo(id: 'key7', text: '测试数据7'),
   // ];
 
+
   final List<String> _todos = new List<String>.generate(30, (int i) => "Items ${i + 1}");
 
   @override
@@ -36,16 +39,25 @@ class TodoListState extends State<TodoList>{
       itemCount: _todos.length,
       itemBuilder: (context, int index) {
         final todo = _todos[index];
+        SingingCharacter _character = SingingCharacter.todoCheckbox;
+        
         return Dismissible(
           key: new Key(todo), 
           onDismissed: (direction) {
             _todos.removeAt(index);
             Scaffold.of(context).showSnackBar(new SnackBar(
-              content: new Text("Item dismissed~~")
+              content: new Text("Item $index dismissed~~")
             ));
           },
-          child: new ListTile(
-            title: new Text("$todo"),
+          child: new RadioListTile(
+            title: new Text("$index"),
+            value: SingingCharacter.todoCheckbox,
+            groupValue: _character,
+            onChanged: (SingingCharacter value) {
+              setState(() {
+                _character = value;                              
+                            });
+            },
           ),
           background: new Container(
             color: Colors.red,

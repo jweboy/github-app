@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/screens/home.dart';
+import 'package:todo/screens/settings.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new HomeScreen(),
-      // routes: <String, WidgetBuilder>{
-      //   HomeScreen.routeName: (BuildContext context) => new HomeScreen(),
-      // },
+      routes: <String, WidgetBuilder>{
+        SettingsScreen.routeName: (BuildContext context) => new SettingsScreen(),
+      },
     );
   }
 }
