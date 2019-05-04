@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: new HomePage(),
+        home: new DetailPage(),
         routes: <String, WidgetBuilder>{
           DetailPage.routeName: (BuildContext context) => new DetailPage(),
         },

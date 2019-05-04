@@ -4,15 +4,19 @@ class ArrowItem extends StatelessWidget {
   const ArrowItem({
     Key key,
     @required this.title,
+    this.icon,
   }) : super(key: key);
 
   final String title;
+  final String icon;
   // final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {
     return new Container(
-      color: Colors.white,
+      decoration: new BoxDecoration(
+        color: Colors.white,
+      ),
       child: new Column(
         children: <Widget>[
           new Container(
