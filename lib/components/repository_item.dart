@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO:状态小角标
+
 class RepositoryItem extends StatelessWidget{
    const RepositoryItem({
     Key key,
@@ -10,14 +12,15 @@ class RepositoryItem extends StatelessWidget{
   final Map<String, dynamic> item;
   final VoidCallback handleTapEvent;
 
-  Widget createTimeWidget() {
-    return new Row(
-      children: <Widget>[
-        new Text('${item["created_at"]}'),
-      ],
-    );
-  }
+  // Widget createTimeWidget() {
+  //   return new Row(
+  //     children: <Widget>[
+  //       new Text('${item["created_at"]}'),
+  //     ],
+  //   );
+  // }
 
+  // 组件信息小组件
   Widget statisticsWidget() {
     return new Row(
       children: <Widget>[
@@ -32,7 +35,7 @@ class RepositoryItem extends StatelessWidget{
               //     )
               //   ),
               // ),
-              new Text('${item["language"]}')
+              new Text(item["language"])
             ],
           ),
           margin: new EdgeInsets.only(right: 10.0),
@@ -40,8 +43,12 @@ class RepositoryItem extends StatelessWidget{
         new Container(
           child: new Row(
             children: <Widget>[
-              new Icon(Icons.star, size: 14.0),
-              new Text('${item["stargazers_count"]}')
+              new Icon(
+                Icons.star, 
+                color: Colors.yellow,
+                size: 16.0
+              ),
+              new Text("${item["stars"]}")
             ],
           ),
           margin: new EdgeInsets.only(right: 10.0),
@@ -49,8 +56,8 @@ class RepositoryItem extends StatelessWidget{
         new Container(
           child: new Row(
             children: <Widget>[
-              new Icon(Icons.code, size: 14.0,),
-              new Text('${item["forks_count"]}')
+              new Icon(Icons.call_split, size: 16.0),
+              new Text("${item["forks"]}")
             ],
           ),
           margin: new EdgeInsets.only(right: 10.0),
@@ -65,23 +72,23 @@ class RepositoryItem extends StatelessWidget{
       children: <Widget>[
         new ListTile(
           title: new Text(
-            '${item["full_name"]}',
+            '${item["name"]}',
             style: new TextStyle(
               color: Colors.blue,
             ),
           ),
           leading: CircleAvatar(
-            backgroundImage: NetworkImage('${item['owner']['avatar_url']}'),
+            backgroundImage: new NetworkImage('${item['avatar']}'),
           ),
-          subtitle: Text('${item["description"]}'),
-          trailing: Text('count'),
+          subtitle: new Text('${item["description"]}'),
+        //   trailing: Text('count'),
           onTap: handleTapEvent,
         ),
         new Container(
           padding: new EdgeInsets.fromLTRB(70.0, 5.0, 0, 5.0),
           child: new Column(
             children: <Widget>[
-              createTimeWidget(),
+              // createTimeWidget(),
               statisticsWidget(),
             ],
           ),

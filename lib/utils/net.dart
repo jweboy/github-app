@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 // base option
 BaseOptions options = new BaseOptions(
-  baseUrl: 'https://api.github.com',
+  // baseUrl: 'https://api.github.com',
   connectTimeout: 5000,
   receiveTimeout: 3000,
 );

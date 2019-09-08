@@ -23,12 +23,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<Map> getOwnerRepositoryData([Map<String, dynamic> params]) async {
-    var responseList = [];
+    var resp = [];
     var pageTotal = 100;
     var pageIndex = (params is Map) ? params['pageIndex'] : 0;
 
     try {
-      responseList = await Net.get('/users/jweboy/starred');
+      resp = await Net.get('/users/jweboy/starred');
+      print(resp);
     } catch(err) {
       // TODO: handle error
     }
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     pageIndex += 1;
 
     Map<String, dynamic> result = {
-      'list': responseList,
+      'list': resp,
       'total': pageTotal,
       'pageIndex': pageIndex,
     };

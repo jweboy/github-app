@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:github/components/navigation_bar.dart';
 import 'package:github/views/home/home_page.dart';
 import 'package:github/views/detail_page.dart';
+import 'package:github/views/trending.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() => runApp(MyApp());
@@ -59,10 +61,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: new DetailPage(),
+        // home: new DetailPage(),
+        // home: new HomePage(),
+        home: new Trending(),
         routes: <String, WidgetBuilder>{
           DetailPage.routeName: (BuildContext context) => new DetailPage(),
         },
+        // navigatorKey: new NavigationBar(),
     );
   }
 }
