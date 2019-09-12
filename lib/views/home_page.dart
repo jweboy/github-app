@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github/views/center/center_page.dart';
-import 'package:github/views/detail/detail_page.dart';
+import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/trending/trending_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,13 +8,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int activeIndex = 0;
+  int activeIndex = 1;
   String appBarTitle = '';
   List<Widget> pages = [];
 
   List tabs = [
-    {'text': 'Home', 'icon': Icon(Icons.home)},
-    {'text': 'Center', 'icon': Icon(Icons.person)},
+    {'text': 'Trending', 'icon': Icon(Icons.home)},
+    {'text': 'Profile', 'icon': Icon(Icons.person)},
   ];
 
   List<BottomNavigationBarItem> _tabs = [];
@@ -31,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    pages..add(TrendingPage())..add(CenterPage());
+    pages..add((TrendingPage()))..add(ProfilePage());
 
     for (int i = 0; i < tabs.length; i++) {
       _tabs.add(BottomNavigationBarItem(

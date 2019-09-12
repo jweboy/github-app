@@ -20,7 +20,7 @@ class _TrendingPageState extends State<TrendingPage> {
     items = await Net.get(
         'https://github-trending-api.now.sh/repositories?language=javascript&since=weekly');
 
-    print(items);
+    // print(items);
     return items;
     // setState(() {
     //   items;

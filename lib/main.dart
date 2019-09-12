@@ -3,7 +3,8 @@ import 'package:fluro/fluro.dart';
 import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart' show Application;
 import 'package:github/views/home_page.dart';
-import 'package:github/views/trending_page.dart';
+import 'package:github/views/profile/profile_page.dart';
+import 'package:github/views/trending/trending_page.dart';
 // import 'package:github/components/navigation_bar.dart';
 // import 'package:github/views/home/home_page.dart';
 // import 'package:github/views/detail_page.dart';
@@ -34,7 +35,8 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       title: 'github-code',
       home: new HomePage(),
-      onGenerateRoute: Application.router.generator,
+      // home: new ProfilePage(),
+      // onGenerateRoute: Application.router.generator,
     );
   }
 }
