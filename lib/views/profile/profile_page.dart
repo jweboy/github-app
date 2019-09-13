@@ -1,6 +1,10 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:github/components/arrow_item.dart';
+import 'package:github/components/list_item.dart';
+import 'package:github/routes/routes.dart';
+import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
+import 'package:github/views/profile/avatar_item.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -39,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  static Column buildStatistics(int count, String title) {
+  static Widget buildStatistics(int count, String title) {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -67,21 +71,30 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('profile >>> $profile');
+    // print('profile >>> $profile');
+
+    _handleAvatarItemTap(BuildContext context) {
+      Application.router.navigateTo(
+          context, '${Routes.personInfo}?name=${profile['name']}',
+          transition: TransitionType.inFromRight);
+    }
 
     return new SingleChildScrollView(
       child: new Column(
         children: <Widget>[
-          new ArrowItem(
+          new AvatarItem(
             title: profile['name'] + '(${profile['login']})',
             description:
                 profile['bio'] + '\nJoined on ${profile['created_at']}',
             avatarUrl: profile['avatar_url'],
+            onTap: () => _handleAvatarItemTap(context),
           ),
           new Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(bottom: BorderSide(color: Colors.grey[300]))),
             margin: const EdgeInsets.only(bottom: 10.0),
             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-            color: Colors.white,
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -92,24 +105,27 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           new Container(
-            margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             color: Colors.white,
             child: new Column(
               children: <Widget>[
-                new ArrowItem(
+                new ListItem(
                   title: profile['company'],
                   iconColor: Colors.blueAccent,
                   icon: Icons.people,
+                  hasTopBorder: true,
                 ),
-                new ArrowItem(
+                new ListItem(
                   title: profile['location'],
                   iconColor: Colors.teal,
                   icon: Icons.location_city,
+                  hasTopBorder: false,
                 ),
-                new ArrowItem(
+                new ListItem(
                   title: profile['blog'],
                   iconColor: Colors.purpleAccent,
                   icon: Icons.link,
+                  hasArrow: true,
+                  hasTopBorder: false,
                 )
               ],
             ),
@@ -119,15 +135,18 @@ class _ProfilePageState extends State<ProfilePage> {
             color: Colors.white,
             child: new Column(
               children: <Widget>[
-                new ArrowItem(
+                new ListItem(
                   title: settingsText,
                   icon: Icons.settings,
                   iconColor: Colors.blueGrey,
+                  hasArrow: true,
                 ),
-                new ArrowItem(
+                new ListItem(
                   title: aboutText,
                   icon: Icons.info,
                   iconColor: Colors.orange,
+                  hasArrow: true,
+                  hasTopBorder: false,
                 )
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart' show Application;
 import 'package:github/views/home_page.dart';
+import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/trending/trending_page.dart';
 // import 'package:github/components/navigation_bar.dart';
