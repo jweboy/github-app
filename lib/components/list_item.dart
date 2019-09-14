@@ -31,46 +31,40 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        decoration: new BoxDecoration(
-          color: Colors.white,
-        ),
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              padding: padding != null ? padding : null,
-              child: new ListTile(
-                title: Text(title),
-                // subtitle: description != null ? Text(description) : null,
-                leading: iconText == ''
-                    ? Icon(
-                        icon,
-                        size: 24.0,
-                        color: iconColor,
-                      )
-                    : Text(
-                        iconText,
-                        style:
-                            TextStyle(fontSize: 16.0, color: Colors.grey[600]),
-                      ),
-                trailing: Icon(
-                  hasArrow ? Icons.keyboard_arrow_right : null,
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        border: Border(
+            top: hasTopBorder
+                ? BorderSide(color: Colors.grey[300])
+                : BorderSide(color: Colors.white),
+            bottom: hasBottomBorder
+                ? BorderSide(
+                    color: Colors.grey[300],
+                  )
+                : BorderSide(color: Colors.white)),
+      ),
+      child: Container(
+        padding: padding != null ? padding : null,
+        child: new ListTile(
+          title: Text(title),
+          // subtitle: description != null ? Text(description) : null,
+          leading: iconText == ''
+              ? Icon(
+                  icon,
+                  size: 24.0,
+                  color: iconColor,
+                )
+              : Text(
+                  iconText,
+                  style: TextStyle(fontSize: 16.0, color: Colors.grey[600]),
                 ),
-                onTap: onTap,
-              ),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: hasTopBorder
-                          ? BorderSide(color: Colors.grey[300])
-                          : BorderSide(color: Colors.white),
-                      bottom: hasBottomBorder
-                          ? BorderSide(
-                              color: Colors.grey[300],
-                            )
-                          : BorderSide(color: Colors.white))),
-            ),
-          ],
-        )
-        // color: Colors.white,
-        );
+          trailing: Icon(
+            hasArrow ? Icons.keyboard_arrow_right : null,
+          ),
+          onTap: onTap,
+        ),
+      ),
+      // color: Colors.white,
+    );
   }
 }
