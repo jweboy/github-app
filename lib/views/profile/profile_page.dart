@@ -5,6 +5,7 @@ import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
 import 'package:github/views/profile/avatar_item.dart';
+import 'package:github/utils/fluro_covert.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -75,7 +76,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
     _handleAvatarItemTap(BuildContext context) {
       Application.router.navigateTo(
-          context, '${Routes.personInfo}?name=${profile['name']}',
+          context,
+          Routes.personInfo +
+              '?name=${profile['name']}&description=${FluroCovert.stringEncode(profile['bio'])}&company=${FluroCovert.stringEncode(profile['company'])}&location=${profile['location']}&blog=${FluroCovert.stringEncode(profile['blog'])}',
           transition: TransitionType.inFromRight);
     }
 

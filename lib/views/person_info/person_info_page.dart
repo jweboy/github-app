@@ -2,29 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:github/components/list_item.dart';
 import 'package:github/utils/application.dart';
 
-class PersonInfoPage extends StatefulWidget {
-  const PersonInfoPage({
+class PersonInfoPage extends StatelessWidget {
+  PersonInfoPage({
     Key key,
     this.name,
+    this.description,
+    this.company,
+    this.location,
+    this.blog,
   }) : super(key: key);
 
   final String name;
+  final String description;
+  final String company;
+  final String location;
+  final String blog;
 
-  @override
-  _PersonInfoPageState createState() => _PersonInfoPageState();
-}
-
-class _PersonInfoPageState extends State<PersonInfoPage> {
   _handleLeadingTap(BuildContext context) {
     Application.router.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    // print('personInfo >>  $name');
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        title: Text(name),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => _handleLeadingTap(context),
@@ -33,36 +35,36 @@ class _PersonInfoPageState extends State<PersonInfoPage> {
       body: Column(
         children: <Widget>[
           ListItem(
-            title: '姓名',
-            hasArrow: true,
             iconText: '姓名',
+            title: name,
+            hasArrow: true,
           ),
           ListItem(
-            title: '简介',
+            iconText: '简介',
+            title: description,
             hasArrow: true,
             hasTopBorder: false,
-            iconText: '简介',
           ),
           Container(
             margin: const EdgeInsets.only(top: 10.0),
             child: Column(
               children: <Widget>[
                 ListItem(
-                  title: '团队',
-                  hasArrow: true,
                   iconText: '团队',
+                  title: company,
+                  hasArrow: true,
                 ),
                 ListItem(
-                  title: '地址',
-                  hasArrow: true,
-                  hasTopBorder: false,
                   iconText: '地址',
-                ),
-                ListItem(
-                  title: '个人主页',
+                  title: location,
                   hasArrow: true,
                   hasTopBorder: false,
+                ),
+                ListItem(
                   iconText: '个人主页',
+                  title: blog,
+                  hasArrow: true,
+                  hasTopBorder: false,
                 ),
               ],
             ),
