@@ -13,6 +13,7 @@ class ListItem extends StatelessWidget {
     this.avatarUrl: '',
     this.padding,
     this.iconText: '',
+    this.onTap,
   }) : super(key: key);
 
   final String title;
@@ -25,6 +26,7 @@ class ListItem extends StatelessWidget {
   final bool hasBottomBorder;
   final EdgeInsets padding;
   final String iconText;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class ListItem extends StatelessWidget {
                 trailing: Icon(
                   hasArrow ? Icons.keyboard_arrow_right : null,
                 ),
+                onTap: onTap,
               ),
               decoration: BoxDecoration(
                   border: Border(

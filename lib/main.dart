@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       title: 'github-code',
       home: new HomePage(),
+      debugShowCheckedModeBanner: false,
       // home: new ProfilePage(),
       // onGenerateRoute: Application.router.generator,
     );

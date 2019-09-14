@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:github/utils/fluro_covert.dart';
+import 'package:github/views/edit_person_info/edit_person_info.dart';
 import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
@@ -35,5 +36,16 @@ var personInfoHandler = new Handler(
     company: FluroCovert.stringDeCode(company),
     location: location,
     description: FluroCovert.stringDeCode(description),
+  );
+});
+
+var editPersonInfoHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
+  String label = params['label']?.first;
+  String value = params['value']?.first;
+
+  return EditPersonInfoPage(
+    label: FluroCovert.stringDeCode(label),
+    value: FluroCovert.stringDeCode(value),
   );
 });

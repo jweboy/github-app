@@ -6,6 +6,7 @@ class Routes {
   static String trending = '/trending';
   static String profile = '/profile';
   static String personInfo = '/personInfo';
+  static String editPersonInfo = '/editPersonInfo';
 
   static void configureRoutes(Router router) {
     // 注册路由
@@ -13,5 +14,6 @@ class Routes {
     router.define(trending, handler: trendingHandler);
     router.define(profile, handler: profileHandler);
     router.define(personInfo, handler: personInfoHandler);
+    router.define(editPersonInfo, handler: editPersonInfoHandler);
   }
 }
