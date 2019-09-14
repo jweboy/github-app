@@ -82,6 +82,11 @@ class _ProfilePageState extends State<ProfilePage> {
           transition: TransitionType.inFromRight);
     }
 
+    _handleListItemTap(BuildContext context, String path) {
+      Application.router
+          .navigateTo(context, path, transition: TransitionType.inFromRight);
+    }
+
     return new SingleChildScrollView(
       child: new Column(
         children: <Widget>[
@@ -129,6 +134,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: Icons.link,
                   hasArrow: true,
                   hasTopBorder: false,
+                  onTap: () => _handleListItemTap(
+                      context,
+                      Routes.webview +
+                          '?url=${FluroCovert.stringEncode(profile['blog'])}'),
                 )
               ],
             ),
@@ -143,6 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: Icons.settings,
                   iconColor: Colors.blueGrey,
                   hasArrow: true,
+                  onTap: () => _handleListItemTap(context, Routes.settings),
                 ),
                 new ListItem(
                   title: aboutText,
@@ -150,6 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   iconColor: Colors.orange,
                   hasArrow: true,
                   hasTopBorder: false,
+                  onTap: () => _handleListItemTap(context, Routes.about),
                 )
               ],
             ),

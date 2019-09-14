@@ -1,11 +1,14 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:github/utils/fluro_covert.dart';
+import 'package:github/views/about/about.dart';
 import 'package:github/views/edit_person_info/edit_person_info.dart';
 import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
+import 'package:github/views/settings/settings_page.dart';
 import 'package:github/views/trending/trending_page.dart';
+import 'package:github/views/webview/webview_page.dart';
 
 var homeHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -48,4 +51,19 @@ var editPersonInfoHandler = new Handler(
     label: FluroCovert.stringDeCode(label),
     value: FluroCovert.stringDeCode(value),
   );
+});
+
+var settingsHandler = new Handler(handlerFunc: (BuildContext context, params) {
+  return SettingsPage();
+});
+
+var aboutHandler = new Handler(handlerFunc: (BuildContext context, params) {
+  return AboutPage();
+});
+
+var webviewHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
+  String url = params['url']?.first;
+
+  return WebviewPage(url: FluroCovert.stringDeCode(url));
 });
