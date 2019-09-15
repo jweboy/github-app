@@ -6,6 +6,8 @@ import 'package:github/components/list_item.dart';
 import 'package:github/components/repository_item.dart';
 import 'package:github/components/spin.dart';
 import 'package:github/components/statistics_block.dart';
+import 'package:github/routes/routes.dart';
+import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
 import 'package:github/views/profile/avatar_item.dart';
 import 'package:github/views/webview/webview_page.dart';
@@ -60,27 +62,8 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
     });
   }
 
-  Widget buildColumn(int count, String title) {
-    return new Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        new Container(
-          margin: const EdgeInsets.only(top: 8.0),
-          child: new Text(
-            '$count',
-            style: new TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0),
-          ),
-        ),
-        new Container(
-          margin: const EdgeInsets.only(top: 5.0),
-          child: new Text(
-            title,
-            style: new TextStyle(fontSize: 14.0, color: Colors.grey[700]),
-          ),
-        )
-      ],
-    );
+  _handleListItemTap(BuildContext context, String path) {
+    Application.router.navigateTo(context, path);
   }
 
   @override
@@ -113,6 +96,8 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
                       icon: Icons.call_split,
                       iconColor: Colors.blueGrey,
                       hasArrow: true,
+                      onTap: () =>
+                          _handleListItemTap(context, Routes.pullRequest),
                     ),
                     ListItem(
                       title: 'Issues',
