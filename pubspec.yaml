@@ -27,6 +27,7 @@ dependencies:
   webview_flutter: ^0.3.6
   cached_network_image: ^1.1.1
   fluro: ^1.5.1
+  flutter_spinkit: ^4.0.0
   
 
 dev_dependencies:

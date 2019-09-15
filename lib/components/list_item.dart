@@ -12,7 +12,7 @@ class ListItem extends StatelessWidget {
     this.iconColor,
     this.avatarUrl: '',
     this.padding,
-    this.iconText: '',
+    this.iconText,
     this.onTap,
   }) : super(key: key);
 
@@ -48,7 +48,7 @@ class ListItem extends StatelessWidget {
         child: new ListTile(
           title: Text(title),
           // subtitle: description != null ? Text(description) : null,
-          leading: iconText == ''
+          leading: iconText == null
               ? Icon(
                   icon,
                   size: 24.0,

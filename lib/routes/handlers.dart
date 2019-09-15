@@ -6,6 +6,7 @@ import 'package:github/views/edit_person_info/edit_person_info.dart';
 import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
+import 'package:github/views/repo_detail/repo_detail_page.dart';
 import 'package:github/views/settings/settings_page.dart';
 import 'package:github/views/trending/trending_page.dart';
 import 'package:github/views/webview/webview_page.dart';
@@ -66,4 +67,18 @@ var webviewHandler = new Handler(
   String url = params['url']?.first;
 
   return WebviewPage(url: FluroCovert.stringDeCode(url));
+});
+
+var repoDetailHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
+  String author = params['author']?.first;
+  String name = params['name']?.first;
+
+  print(
+      'jaja >>> ${FluroCovert.stringDeCode(author)} ${FluroCovert.stringDeCode(name)}');
+
+  return RepoDetailPage(
+    author: FluroCovert.stringDeCode(author),
+    name: FluroCovert.stringDeCode(name),
+  );
 });

@@ -10,6 +10,7 @@ class Routes {
   static String settings = '/settings';
   static String about = '/about';
   static String webview = '/webview';
+  static String repoDetail = '/repoDetail';
 
   static void configureRoutes(Router router) {
     // 注册路由
@@ -21,5 +22,6 @@ class Routes {
     router.define(settings, handler: settingsHandler);
     router.define(about, handler: aboutHandler);
     router.define(webview, handler: webviewHandler);
+    router.define(repoDetail, handler: repoDetailHandler);
   }
 }

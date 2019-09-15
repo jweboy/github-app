@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int activeIndex = 1;
+  int activeIndex = 0;
   String appBarTitle = '';
   List<Widget> pages = [];
 
@@ -30,7 +30,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    pages..add((TrendingPage()))..add(ProfilePage());
+    pages..add((TrendingPage()));
+    // ..add(ProfilePage());
 
     for (int i = 0; i < tabs.length; i++) {
       _tabs.add(BottomNavigationBarItem(

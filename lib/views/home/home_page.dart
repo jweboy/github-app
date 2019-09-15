@@ -6,7 +6,7 @@ import 'package:github/components/repository_item.dart';
 class HomePage extends StatefulWidget {
   const HomePage({
     Key key,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => new _HomePageState();
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     try {
       resp = await Net.get('/users/jweboy/starred');
       print(resp);
-    } catch(err) {
+    } catch (err) {
       // TODO: handle error
     }
 
@@ -45,10 +45,10 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
 
-  Widget renderListItem(index, item){
+  Widget renderListItem(index, item) {
     return new RepositoryItem(
       item: item,
-      handleTapEvent: navigateToDetailPage,
+      // handleTapEvent: navigateToDetailPage,
     );
   }
 
@@ -56,24 +56,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
-          title: const Text('github'),
+      appBar: new AppBar(
+        title: const Text('github'),
+      ),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            new Expanded(
+              child: refreshComponent.ListRefresh(
+                  getOwnerRepositoryData, renderListItem),
+            )
+          ],
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              new Expanded(
-                child: refreshComponent.ListRefresh(
-                  getOwnerRepositoryData,
-                  renderListItem
-                ),
-              )
-            ],
-          ),
-        ),
-      );
-    }
+      ),
+    );
   }
+}

@@ -4,18 +4,20 @@ import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart';
 
 class AvatarItem extends StatelessWidget {
-  const AvatarItem({
-    Key key,
-    @required this.title,
-    this.avatarUrl,
-    this.description,
-    this.onTap,
-  }) : super(key: key);
-
   final String avatarUrl;
   final String title;
   final String description;
   final Function onTap;
+  final bool hasArrow;
+
+  const AvatarItem({
+    Key key,
+    @required this.title,
+    @required this.avatarUrl,
+    this.description: '',
+    this.onTap,
+    this.hasArrow: true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,11 @@ class AvatarItem extends StatelessWidget {
           backgroundImage: NetworkImage(avatarUrl),
           radius: 30.0,
         ),
-        trailing: Icon(
-          Icons.keyboard_arrow_right,
-        ),
+        trailing: hasArrow == true
+            ? Icon(
+                Icons.keyboard_arrow_right,
+              )
+            : null,
         onTap: onTap,
       ),
     );

@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 // base option
 BaseOptions options = new BaseOptions(
     // baseUrl: 'https://api.github.com',
-    connectTimeout: 5000,
+    connectTimeout: 10000,
     receiveTimeout: 3000,
-    contentType: ContentType.parse("application/x-www-form-urlencoded"),
+    // contentType: ContentType.parse("application/x-www-form-urlencoded"),
     headers: {
       'Authorization': 'Bear 0b157832d5acd5e87b1108af17002bb3788dc947',
     });
@@ -16,7 +16,8 @@ BaseOptions options = new BaseOptions(
 Dio dio = new Dio(options);
 
 class Net {
-  static Future get(String url, {Map<String, dynamic> params}) async {
+  static Future get(String url) async {
+    print('resp >>> $url');
     Response response = await dio.get(url);
 
     return response.data;

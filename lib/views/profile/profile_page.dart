@@ -75,11 +75,11 @@ class _ProfilePageState extends State<ProfilePage> {
     // print('profile >>> $profile');
 
     _handleAvatarItemTap(BuildContext context) {
-      Application.router.navigateTo(
-          context,
-          Routes.personInfo +
-              '?name=${profile['name']}&description=${FluroCovert.stringEncode(profile['bio'])}&company=${FluroCovert.stringEncode(profile['company'])}&location=${profile['location']}&blog=${FluroCovert.stringEncode(profile['blog'])}',
-          transition: TransitionType.inFromRight);
+      // Application.router.navigateTo(
+      //     context,
+      //     Routes.personInfo +
+      //         '?name=${profile['name']}&description=${FluroCovert.stringEncode(profile['bio'])}&company=${FluroCovert.stringEncode(profile['company'])}&location=${profile['location']}&blog=${FluroCovert.stringEncode(profile['blog'])}',
+      //     transition: TransitionType.inFromRight);
     }
 
     _handleListItemTap(BuildContext context, String path) {

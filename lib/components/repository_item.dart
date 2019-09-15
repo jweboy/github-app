@@ -2,23 +2,15 @@ import 'package:flutter/material.dart';
 
 // TODO:状态小角标
 
-class RepositoryItem extends StatelessWidget{
-   const RepositoryItem({
+class RepositoryItem extends StatelessWidget {
+  const RepositoryItem({
     Key key,
     @required this.item,
-    this.handleTapEvent,
-  }): super(key: key);
+    this.onTap,
+  }) : super(key: key);
 
   final Map<String, dynamic> item;
-  final VoidCallback handleTapEvent;
-
-  // Widget createTimeWidget() {
-  //   return new Row(
-  //     children: <Widget>[
-  //       new Text('${item["created_at"]}'),
-  //     ],
-  //   );
-  // }
+  final VoidCallback onTap;
 
   // 组件信息小组件
   Widget statisticsWidget() {
@@ -43,11 +35,7 @@ class RepositoryItem extends StatelessWidget{
         new Container(
           child: new Row(
             children: <Widget>[
-              new Icon(
-                Icons.star, 
-                color: Colors.yellow,
-                size: 16.0
-              ),
+              new Icon(Icons.star, color: Colors.yellow, size: 16.0),
               new Text("${item["stars"]}")
             ],
           ),
@@ -81,8 +69,8 @@ class RepositoryItem extends StatelessWidget{
             backgroundImage: new NetworkImage('${item['avatar']}'),
           ),
           subtitle: new Text('${item["description"]}'),
-        //   trailing: Text('count'),
-          onTap: handleTapEvent,
+          //   trailing: Text('count'),
+          onTap: onTap,
         ),
         new Container(
           padding: new EdgeInsets.fromLTRB(70.0, 5.0, 0, 5.0),
