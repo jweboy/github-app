@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:github/utils/fluro_covert.dart';
 import 'package:github/views/about/about.dart';
 import 'package:github/views/edit_person_info/edit_person_info.dart';
+import 'package:github/views/issue/issue_page.dart';
 import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
@@ -87,6 +88,17 @@ var pullRequestHandler = new Handler(
   String repo = params['repo']?.first;
 
   return PullRequestPage(
+      // author: FluroCovert.stringDeCode(author),
+      // name: FluroCovert.stringDeCode(name),
+      );
+});
+
+var issueHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
+  String author = params['author']?.first;
+  String repo = params['repo']?.first;
+
+  return IssuePage(
       // author: FluroCovert.stringDeCode(author),
       // name: FluroCovert.stringDeCode(name),
       );

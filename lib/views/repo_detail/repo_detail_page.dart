@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:github/components/list_item.dart';
@@ -63,7 +64,8 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
   }
 
   _handleListItemTap(BuildContext context, String path) {
-    Application.router.navigateTo(context, path);
+    Application.router
+        .navigateTo(context, path, transition: TransitionType.inFromRight);
   }
 
   @override
@@ -105,6 +107,7 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
                       icon: Icons.info,
                       iconColor: Colors.orange,
                       hasArrow: true,
+                      onTap: () => _handleListItemTap(context, Routes.issue),
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 25.0),
