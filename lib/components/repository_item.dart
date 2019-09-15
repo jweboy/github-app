@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 // TODO:状态小角标
 
 class RepositoryItem extends StatelessWidget {
+  final Map<String, dynamic> item;
+  final VoidCallback onTap;
+
   const RepositoryItem({
     Key key,
     @required this.item,
     this.onTap,
   }) : super(key: key);
-
-  final Map<String, dynamic> item;
-  final VoidCallback onTap;
 
   // 组件信息小组件
   Widget statisticsWidget() {

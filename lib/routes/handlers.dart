@@ -88,9 +88,9 @@ var pullRequestHandler = new Handler(
   String repo = params['repo']?.first;
 
   return PullRequestPage(
-      // author: FluroCovert.stringDeCode(author),
-      // name: FluroCovert.stringDeCode(name),
-      );
+    author: FluroCovert.stringDeCode(author),
+    repo: FluroCovert.stringDeCode(repo),
+  );
 });
 
 var issueHandler = new Handler(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:github/components/spin.dart';
 import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
@@ -29,26 +30,15 @@ class _TrendingPageState extends State<TrendingPage> {
   }
 
   Future<void> asyncGetTrendings() async {
-    items = await Net.get(
+    var resp = await Net.get(
         'https://github-trending-api.now.sh/repositories?language=javascript&since=weekly');
 
     // print('items >>> $items');
 
     setState(() {
       _isLoading = false;
-      items = items;
+      items = resp;
     });
-  }
-
-  Widget renderLoading() {
-    return Container(
-      child: Center(
-        child: SpinKitCircle(
-          color: Colors.blueAccent,
-          size: 50.0,
-        ),
-      ),
-    );
   }
 
   @override
@@ -57,7 +47,7 @@ class _TrendingPageState extends State<TrendingPage> {
       body: new Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: _isLoading
-            ? renderLoading()
+            ? Spin()
             : ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
                     Divider(),
@@ -71,7 +61,6 @@ class _TrendingPageState extends State<TrendingPage> {
               ),
         // child: new Text('haha'),
       ),
-      // bottomNavigationBar: new NavigationBar(),
     );
   }
 }

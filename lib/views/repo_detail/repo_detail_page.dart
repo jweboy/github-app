@@ -1,18 +1,15 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:github/components/list_item.dart';
-import 'package:github/components/repository_item.dart';
 import 'package:github/components/spin.dart';
 import 'package:github/components/statistics_block.dart';
 import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
 import 'package:github/views/profile/avatar_item.dart';
-import 'package:github/views/webview/webview_page.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:github/utils/fluro_covert.dart';
 
 class RepoDetailPage extends StatefulWidget {
   final String author;
@@ -98,8 +95,10 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
                       icon: Icons.call_split,
                       iconColor: Colors.blueGrey,
                       hasArrow: true,
-                      onTap: () =>
-                          _handleListItemTap(context, Routes.pullRequest),
+                      onTap: () => _handleListItemTap(
+                          context,
+                          Routes.pullRequest +
+                              '?author=${FluroCovert.stringEncode(data['owner']['login'])}&repo=${FluroCovert.stringEncode(data['name'])}'),
                     ),
                     ListItem(
                       title: 'Issues',
