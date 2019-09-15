@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:github/utils/application.dart';
 
 // base option
 BaseOptions options = new BaseOptions(
-    // baseUrl: 'https://api.github.com',
+    baseUrl: Application.requestUrl,
     connectTimeout: 10000,
-    receiveTimeout: 3000,
+    receiveTimeout: 10000,
     // contentType: ContentType.parse("application/x-www-form-urlencoded"),
     headers: {
       'Authorization': 'Bear 0b157832d5acd5e87b1108af17002bb3788dc947',
