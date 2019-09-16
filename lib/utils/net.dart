@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+// import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:github/utils/application.dart';
 
@@ -10,7 +10,7 @@ BaseOptions options = new BaseOptions(
     receiveTimeout: 10000,
     // contentType: ContentType.parse("application/x-www-form-urlencoded"),
     headers: {
-      'Authorization': 'Bear 0b157832d5acd5e87b1108af17002bb3788dc947',
+      'Authorization': 'Bear 63f32bbebba0a813f1750e3eab1e0414f8747c69',
     });
 
 // dio instance
@@ -20,12 +20,6 @@ class Net {
   static Future get(String url) async {
     print('resp >>> $url');
     Response response = await dio.get(url);
-
-    return response.data;
-  }
-
-  static Future patch(String url, Map<String, dynamic> params) async {
-    Response response = await dio.patch(url, data: params);
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
@@ -46,6 +40,12 @@ class Net {
       // 当请求失败时做一些预处理
       return e; //continue
     }));
+
+    return response.data;
+  }
+
+  static Future patch(String url, Map<String, dynamic> params) async {
+    Response response = await dio.patch(url, data: params);
 
     return response.data;
   }
