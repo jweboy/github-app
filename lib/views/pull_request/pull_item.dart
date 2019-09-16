@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PullItem extends StatelessWidget {
-  final Map data;
+  final Map<String, dynamic> data;
+  final Function onTap;
 
   const PullItem({
     Key key,
     this.data,
+    this.onTap,
   }) : super(key: key);
 
   // 组件信息小组件
@@ -83,7 +85,7 @@ class PullItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('data >>> $data');
+    // print('data >>> $data');
 
     return Column(
       children: <Widget>[
@@ -91,16 +93,14 @@ class PullItem extends StatelessWidget {
           color: Colors.white,
           child: ListTile(
             title: Text(
-              '${data['title']}',
-              // style: TextStyle(
-              //   color: Colors.blue,
-              // ),
+              data['title'],
+              style: TextStyle(
+                color: Colors.blue[500],
+              ),
             ),
-            trailing: Text('#${data['number']}'),
-            leading: Icon(Icons.call_split),
+            leading: Text('#${data['number']}'),
             subtitle: buildStatisticsBlock(),
-            // //   trailing: Text('count'),
-            // onTap: onTap,
+            onTap: onTap,
           ),
         ),
         // Container(

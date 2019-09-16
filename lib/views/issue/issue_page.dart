@@ -1,9 +1,20 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:github/components/empty_data.dart';
 import 'package:github/components/spin.dart';
 import 'package:github/components/tab_bar.dart';
+import 'package:github/routes/routes.dart';
+import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
+import 'package:github/views/issue/issue_item.dart';
+import 'package:github/utils/fluro_covert.dart';
 
 class IssuePage extends StatefulWidget {
+  final String author;
+  final String repo;
+
+  const IssuePage({Key key, this.author, this.repo}) : super(key: key);
+
   @override
   _IssuePageState createState() => _IssuePageState();
 }
@@ -23,9 +34,10 @@ class _IssuePageState extends State<IssuePage> {
 
   Future<void> _asyncGetPullRequestData(
       {String state = 'open', int pageIndex}) async {
-    var resp = await Net.get('/repos/jweboy/github-app/pulls?state=$state');
+    var resp = await Net.get(
+        '/repos/${widget.author}/${widget.repo}/issues?state=$state');
 
-    print('resp >>> $resp');
+    print('issue resp >>> $resp');
 
     setState(() {
       items = resp;
@@ -38,6 +50,12 @@ class _IssuePageState extends State<IssuePage> {
       _isLoading = true;
       _asyncGetPullRequestData(state: tabOptions[index]);
     });
+  }
+
+  void _handleItemTap(BuildContext context, Map<String, dynamic> data) {
+    Application.router.navigateTo(context,
+        Routes.webview + '?url=${FluroCovert.stringEncode(data['html_url'])}',
+        transition: TransitionType.inFromRight);
   }
 
   // Widget renderListItem(index, item) {
@@ -65,24 +83,27 @@ class _IssuePageState extends State<IssuePage> {
                 ),
               ),
               Container(
-                child: _isLoading ? Spin() : Text('s'),
-              )
-              // Container(
-              //   child: ListView.separated(
-              //     separatorBuilder: (BuildContext context, int index) =>
-              //         Divider(),
-              //     itemCount: items.length,
-              //     itemBuilder: (context, index) {
-              //       return new RepositoryItem(
-              //         item: items[index],
-              //         // onTap: () => _handleItemTap(context, items[index]),
-              //       );
-              //     },
-              //   ),
-              // )
+                  child: _isLoading
+                      ? Spin()
+                      : (items.length > 0
+                          ? Flexible(
+                              child: ListView.separated(
+                                separatorBuilder:
+                                    (BuildContext context, int index) =>
+                                        Divider(),
+                                itemCount: items.length,
+                                itemBuilder: (context, index) {
+                                  return new IssueItem(
+                                    data: items[index],
+                                    onTap: () =>
+                                        _handleItemTap(context, items[index]),
+                                  );
+                                },
+                              ),
+                            )
+                          : EmptyData()))
             ],
           ),
-        ) // tabs: tabs.map((e) => Tab(text: e)).toList()),
-        );
+        ));
   }
 }

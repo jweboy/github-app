@@ -1,5 +1,6 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:github/components/empty_data.dart';
 import 'package:github/components/spin.dart';
 import 'package:github/routes/routes.dart';
 import 'package:github/utils/application.dart';
@@ -14,11 +15,13 @@ class TrendingPage extends StatefulWidget {
 
 class _TrendingPageState extends State<TrendingPage> {
   List items = new List();
-  bool _isLoading = true;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
+
+    Application.requestUrl = 'https://github-trending-api.now.sh';
     asyncGetTrendings();
   }
 
@@ -26,14 +29,16 @@ class _TrendingPageState extends State<TrendingPage> {
     Application.router.navigateTo(
         context,
         Routes.repoDetail +
-            '?author=${FluroCovert.stringEncode(params['author'])}&name=${FluroCovert.stringEncode(params['name'])}');
+            '?author=${FluroCovert.stringEncode(params['author'])}&name=${FluroCovert.stringEncode(params['name'])}',
+        transition: TransitionType.inFromRight);
   }
 
   Future<void> asyncGetTrendings() async {
-    var resp = await Net.get(
-        'https://github-trending-api.now.sh/repositories?language=javascript&since=weekly');
+    setState(() {
+      _isLoading = true;
+    });
 
-    // print('items >>> $items');
+    var resp = await Net.get('/repositories?language=javascript&since=weekly');
 
     setState(() {
       _isLoading = false;
@@ -48,18 +53,19 @@ class _TrendingPageState extends State<TrendingPage> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: _isLoading
             ? Spin()
-            : ListView.separated(
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(),
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return new RepositoryItem(
-                    item: items[index],
-                    onTap: () => _handleItemTap(context, items[index]),
-                  );
-                },
-              ),
-        // child: new Text('haha'),
+            : (items.length > 0
+                ? ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        Divider(),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return new RepositoryItem(
+                        item: items[index],
+                        onTap: () => _handleItemTap(context, items[index]),
+                      );
+                    },
+                  )
+                : EmptyData()),
       ),
     );
   }

@@ -1,9 +1,14 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:github/components/empty_data.dart';
 // import 'package:github/components/pull_refresh.dart' as refreshComponent;
 import 'package:github/components/spin.dart';
 import 'package:github/components/tab_bar.dart';
+import 'package:github/routes/routes.dart';
+import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
 import 'package:github/views/pull_request/pull_item.dart';
+import 'package:github/utils/fluro_covert.dart';
 
 class PullRequestPage extends StatefulWidget {
   final String author;
@@ -51,6 +56,12 @@ class _PullRequestPageState extends State<PullRequestPage> {
     });
   }
 
+  void _handleItemTap(BuildContext context, Map<String, dynamic> data) {
+    Application.router.navigateTo(context,
+        Routes.webview + '?url=${FluroCovert.stringEncode(data['html_url'])}',
+        transition: TransitionType.inFromRight);
+  }
+
   // Widget renderListItem(index, item) {
   //   return new RepositoryItem(
   //     item: item,
@@ -87,13 +98,12 @@ class _PullRequestPageState extends State<PullRequestPage> {
                             itemBuilder: (context, index) {
                               return PullItem(
                                 data: items[index],
-                                // onTap: () => _handleItemTap(context, items[index]),
+                                onTap: () =>
+                                    _handleItemTap(context, items[index]),
                               );
                             },
                           ))
-                        : Center(
-                            child: Text('no data'),
-                          )),
+                        : EmptyData()),
               )
             ],
           ),

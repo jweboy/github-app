@@ -75,11 +75,11 @@ class _ProfilePageState extends State<ProfilePage> {
     // print('profile >>> $profile');
 
     _handleAvatarItemTap(BuildContext context) {
-      // Application.router.navigateTo(
-      //     context,
-      //     Routes.personInfo +
-      //         '?name=${profile['name']}&description=${FluroCovert.stringEncode(profile['bio'])}&company=${FluroCovert.stringEncode(profile['company'])}&location=${profile['location']}&blog=${FluroCovert.stringEncode(profile['blog'])}',
-      //     transition: TransitionType.inFromRight);
+      Application.router.navigateTo(
+          context,
+          Routes.personInfo +
+              '?name=${profile['name']}&description=${FluroCovert.stringEncode(profile['bio'])}&company=${FluroCovert.stringEncode(profile['company'])}&location=${profile['location']}&blog=${FluroCovert.stringEncode(profile['blog'])}',
+          transition: TransitionType.inFromRight);
     }
 
     _handleListItemTap(BuildContext context, String path) {
@@ -87,23 +87,23 @@ class _ProfilePageState extends State<ProfilePage> {
           .navigateTo(context, path, transition: TransitionType.inFromRight);
     }
 
-    return new SingleChildScrollView(
-      child: new Column(
+    return SingleChildScrollView(
+      child: ListBody(
         children: <Widget>[
-          new AvatarItem(
+          AvatarItem(
             title: profile['name'] + '(${profile['login']})',
             description:
                 profile['bio'] + '\nJoined on ${profile['created_at']}',
             avatarUrl: profile['avatar_url'],
             onTap: () => _handleAvatarItemTap(context),
           ),
-          new Container(
+          Container(
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(bottom: BorderSide(color: Colors.grey[300]))),
             margin: const EdgeInsets.only(bottom: 10.0),
             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-            child: new Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 buildStatistics(profile['public_repos'], 'Repositories'),
@@ -112,23 +112,23 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          new Container(
+          Container(
             color: Colors.white,
-            child: new Column(
+            child: Column(
               children: <Widget>[
-                new ListItem(
+                ListItem(
                   title: profile['company'],
                   iconColor: Colors.blueAccent,
                   icon: Icons.people,
                   hasTopBorder: true,
                 ),
-                new ListItem(
+                ListItem(
                   title: profile['location'],
                   iconColor: Colors.teal,
                   icon: Icons.location_city,
                   hasTopBorder: false,
                 ),
-                new ListItem(
+                ListItem(
                   title: profile['blog'],
                   iconColor: Colors.purpleAccent,
                   icon: Icons.link,
@@ -142,19 +142,19 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          new Container(
+          Container(
             margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             color: Colors.white,
-            child: new Column(
+            child: Column(
               children: <Widget>[
-                new ListItem(
+                ListItem(
                   title: settingsText,
                   icon: Icons.settings,
                   iconColor: Colors.blueGrey,
                   hasArrow: true,
                   onTap: () => _handleListItemTap(context, Routes.settings),
                 ),
-                new ListItem(
+                ListItem(
                   title: aboutText,
                   icon: Icons.info,
                   iconColor: Colors.orange,

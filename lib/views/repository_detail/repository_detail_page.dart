@@ -11,21 +11,21 @@ import 'package:github/utils/net.dart';
 import 'package:github/views/profile/avatar_item.dart';
 import 'package:github/utils/fluro_covert.dart';
 
-class RepoDetailPage extends StatefulWidget {
+class RepositoryDetailPage extends StatefulWidget {
   final String author;
   final String name;
 
-  const RepoDetailPage({
+  const RepositoryDetailPage({
     Key key,
-    this.author: 'redux',
-    this.name: 'reduxjs',
+    this.author: '',
+    this.name: '',
   }) : super(key: key);
 
   @override
-  _RepoDetailPageState createState() => _RepoDetailPageState();
+  _RepositoryDetailPageState createState() => _RepositoryDetailPageState();
 }
 
-class _RepoDetailPageState extends State<RepoDetailPage> {
+class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
   Map<String, dynamic> data = {
     'stargazers_count': 0,
     'watchers_count': 0,
@@ -71,11 +71,11 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
         appBar: AppBar(
           title: Text('Repository'),
         ),
-        body: Container(
-          color: Colors.grey[200],
+        body: SingleChildScrollView(
+          // color: Colors.grey[200],
           child: _isLoading
               ? Spin()
-              : Column(
+              : ListBody(
                   children: <Widget>[
                     AvatarItem(
                       title: data['full_name'],
@@ -106,7 +106,10 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
                       icon: Icons.info,
                       iconColor: Colors.orange,
                       hasArrow: true,
-                      onTap: () => _handleListItemTap(context, Routes.issue),
+                      onTap: () => _handleListItemTap(
+                          context,
+                          Routes.issue +
+                              '?author=${FluroCovert.stringEncode(data['owner']['login'])}&repo=${FluroCovert.stringEncode(data['name'])}'),
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 25.0),
@@ -130,11 +133,6 @@ class _RepoDetailPageState extends State<RepoDetailPage> {
                     ),
                     // WebviewPage(
                     //   url: 'http://baidu.com',
-                    // )
-                    // Container(
-                    //   child: const WebView(
-                    //     initialUrl: 'https://baidu.com',
-                    //   ),
                     // )
                   ],
                 ),
