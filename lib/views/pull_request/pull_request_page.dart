@@ -39,7 +39,8 @@ class _PullRequestPageState extends State<PullRequestPage> {
   Future<void> _asyncGetPullRequestData(
       {String state = 'open', int pageIndex}) async {
     var resp = await Net.get(
-        '/repos/${widget.author}/${widget.repo}/pulls?state=$state');
+        'https://api.github.com/repos/${widget.author}/${widget.repo}/pulls',
+        queryParameters: {'state': state});
 
     print('resp >>> $resp');
 

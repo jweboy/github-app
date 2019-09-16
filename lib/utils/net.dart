@@ -17,13 +17,15 @@ BaseOptions options = new BaseOptions(
 Dio dio = new Dio(options);
 
 class Net {
-  static Future get(String url) async {
-    print('resp >>> $url');
-    Response response = await dio.get(url);
+  static Future get(String url,
+      {RequestOptions options, Map<String, dynamic> queryParameters}) async {
+    print('request url >>> $url $queryParameters');
+    Response response =
+        await dio.get(url, options: options, queryParameters: queryParameters);
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-      print('options ... $options');
+      print('options >>> $options');
       // 在请求被发送之前做一些事情
       return options; //continue
       // 如果你想完成请求并返回一些自定义数据，可以返回一个`Response`对象或返回`dio.resolve(data)`。

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:github/components/empty_data.dart';
@@ -29,19 +30,23 @@ class _IssuePageState extends State<IssuePage> {
   void initState() {
     super.initState();
 
-    _asyncGetPullRequestData();
+    setState(() {
+      _isLoading = true;
+      _asyncGetPullRequestData();
+    });
   }
 
   Future<void> _asyncGetPullRequestData(
       {String state = 'open', int pageIndex}) async {
     var resp = await Net.get(
-        '/repos/${widget.author}/${widget.repo}/issues?state=$state');
+        'https://api.github.com/repos/${widget.author}/${widget.repo}/issues',
+        queryParameters: {'state': state});
 
     print('issue resp >>> $resp');
 
     setState(() {
-      items = resp;
       _isLoading = false;
+      items = resp;
     });
   }
 

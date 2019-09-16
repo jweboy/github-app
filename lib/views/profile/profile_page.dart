@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
 
     return SingleChildScrollView(
-      child: ListBody(
+      child: Column(
         children: <Widget>[
           AvatarItem(
             title: profile['name'] + '(${profile['login']})',
