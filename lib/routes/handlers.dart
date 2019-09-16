@@ -8,26 +8,30 @@ import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
 import 'package:github/views/pull_request/pull_request_page.dart';
-import 'package:github/views/repo_detail/repo_detail_page.dart';
+import 'package:github/views/repository_detail/repository_detail_page.dart';
 import 'package:github/views/settings/settings_page.dart';
 import 'package:github/views/trending/trending_page.dart';
 import 'package:github/views/webview/webview_page.dart';
 
+// 主页
 var homeHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return HomePage();
 });
 
+// 每周趋势榜页
 var trendingHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return TrendingPage();
 });
 
+// 个人中心页
 var profileHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return ProfilePage();
 });
 
+// 个人资料页
 var personInfoHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String name = params['name']?.first;
@@ -45,6 +49,7 @@ var personInfoHandler = new Handler(
   );
 });
 
+// 编辑个人资料页
 var editPersonInfoHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String label = params['label']?.first;
@@ -56,14 +61,17 @@ var editPersonInfoHandler = new Handler(
   );
 });
 
+// 设置页
 var settingsHandler = new Handler(handlerFunc: (BuildContext context, params) {
   return SettingsPage();
 });
 
+// 关于作者页
 var aboutHandler = new Handler(handlerFunc: (BuildContext context, params) {
   return AboutPage();
 });
 
+// webview 页
 var webviewHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String url = params['url']?.first;
@@ -71,17 +79,19 @@ var webviewHandler = new Handler(
   return WebviewPage(url: FluroCovert.stringDeCode(url));
 });
 
+// 仓库信息页
 var repoDetailHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String author = params['author']?.first;
   String name = params['name']?.first;
 
-  return RepoDetailPage(
+  return RepositoryDetailPage(
     author: FluroCovert.stringDeCode(author),
     name: FluroCovert.stringDeCode(name),
   );
 });
 
+// pull request 页
 var pullRequestHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String author = params['author']?.first;
@@ -93,13 +103,14 @@ var pullRequestHandler = new Handler(
   );
 });
 
+// issue 页
 var issueHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
   String author = params['author']?.first;
   String repo = params['repo']?.first;
 
   return IssuePage(
-      // author: FluroCovert.stringDeCode(author),
-      // name: FluroCovert.stringDeCode(name),
-      );
+    author: FluroCovert.stringDeCode(author),
+    repo: FluroCovert.stringDeCode(repo),
+  );
 });

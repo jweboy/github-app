@@ -5,13 +5,13 @@ class Routes {
   static String home = '/';
   static String trending = '/trending';
   static String profile = '/profile';
-  static String personInfo = '/personInfo';
-  static String editPersonInfo = '/editPersonInfo';
+  static String personInfo = '/person-info';
+  static String editPersonInfo = '/edit-person-info';
   static String settings = '/settings';
   static String about = '/about';
   static String webview = '/webview';
-  static String repoDetail = '/repoDetail';
-  static String pullRequest = '/pullRequest';
+  static String repoDetail = '/repository-detail';
+  static String pullRequest = '/pull-request';
   static String issue = '/issue';
 
   static void configureRoutes(Router router) {
