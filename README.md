@@ -1,30 +1,25 @@
-<!--
- * @Author: jianglei
- * @Date: 2019-05-02 22:06:49
- * @LastEditors: jianglei
- * @LastEditTime: 2019-09-08 23:43:58
- -->
-# todo
+# githubApp
 
-A new Flutter project.
+## Introduction
 
-## Getting Started
+A GitHub app project written in flutter.
 
-This project is a starting point for a Flutter application.
+## Partial screenshot
 
-A few resources to get you started if this is your first Flutter project:
+<div style="overflow: hidden;" >
+  <img src="http://assets.jweboy.com/github-app-01.png" alt="01" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-02.png" alt="02" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-03.png" alt="03" style="zoom: 50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-04.png" alt="04" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-05.png" alt="05" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-06.png" alt="06" style="zoom:50%;" />
+<img src="http://assets.jweboy.com/github-app-07.png" alt="07" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-08.png" alt="08" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-09.png" alt="09" style="zoom:50%;float:left;margin-right: 20px;" />
+<img src="http://assets.jweboy.com/github-app-10.png" alt="10" style="zoom:50%;float:left;margin-right: 20px;" />
+</div>
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
-[graphql-flutter](https://github.com/jweboy/graphql-flutter/blob/master/example/lib/graphql_operation/queries/readRepositories.dart);
-[github-graphql-explorer](https://developer.github.com/v4/explorer/)
-
-Repo
+## References
 
 [https://pub.flutter-io.cn/](https://pub.flutter-io.cn/)
 [https://api.flutter.dev/flutter/material/material-library.html](https://api.flutter.dev/flutter/material/material-library.html)
