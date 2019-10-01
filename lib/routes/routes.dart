@@ -13,6 +13,7 @@ class Routes {
   static String repoDetail = '/repository-detail';
   static String pullRequest = '/pull-request';
   static String issue = '/issue';
+  static String multipleConditionFilter = '/multiple-condition-filter';
 
   static void configureRoutes(Router router) {
     // 注册路由
@@ -27,5 +28,7 @@ class Routes {
     router.define(repoDetail, handler: repoDetailHandler);
     router.define(pullRequest, handler: pullRequestHandler);
     router.define(issue, handler: issueHandler);
+    router.define(multipleConditionFilter,
+        handler: multipleConditionFilterHandler);
   }
 }

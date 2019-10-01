@@ -4,6 +4,7 @@ import 'package:github/utils/fluro_covert.dart';
 import 'package:github/views/about/about.dart';
 import 'package:github/views/edit_person_info/edit_person_info.dart';
 import 'package:github/views/issue/issue_page.dart';
+import 'package:github/views/multiple_condition_filter/multiple_condition_filter_page.dart';
 import 'package:github/views/person_info/person_info_page.dart';
 import 'package:github/views/profile/profile_page.dart';
 import 'package:github/views/home/home_page.dart';
@@ -113,4 +114,9 @@ var issueHandler = new Handler(
     author: FluroCovert.stringDeCode(author),
     repo: FluroCovert.stringDeCode(repo),
   );
+});
+
+var multipleConditionFilterHandler =
+    new Handler(handlerFunc: (BuildContext context, params) {
+  return MultipleConditionFilter();
 });
