@@ -9,4 +9,8 @@ class Router {
       TransitionType transition = TransitionType.inFromRight}) {
     Application.router.navigateTo(context, path, transition: transition);
   }
+
+  static void pop(BuildContext context) {
+    Application.router.pop(context);
+  }
 }

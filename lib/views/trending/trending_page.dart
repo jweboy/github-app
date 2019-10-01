@@ -7,6 +7,7 @@ import 'package:github/utils/application.dart';
 import 'package:github/utils/net.dart';
 import 'package:github/components/repository_item.dart';
 import 'package:github/utils/fluro_covert.dart';
+import 'package:github/utils/net/net.dart';
 
 class TrendingPage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _TrendingPageState extends State<TrendingPage> {
     super.initState();
 
     Application.requestUrl = 'https://github-trending-api.now.sh';
-    asyncGetTrendings();
+    _asyncGetTrendings();
   }
 
   _handleItemTap(BuildContext context, dynamic params) {
@@ -33,22 +34,44 @@ class _TrendingPageState extends State<TrendingPage> {
         transition: TransitionType.inFromRight);
   }
 
-  Future<void> asyncGetTrendings() async {
-    setState(() {
-      _isLoading = true;
-    });
+  Future<void> _asyncGetTrendings() async {
+    // setState(() {
+    //   _isLoading = true;
+    // });
 
-    var resp = await Net.get('/repositories?language=javascript&since=weekly');
+    // var resp = await Net.get('/repositories?language=javascript&since=weekly');
 
-    setState(() {
-      _isLoading = false;
-      items = resp;
-    });
+    // setState(() {
+    //   _isLoading = false;
+    //   items = resp;
+    // });
+    var result = await net.fetch('https://github-trending-api.now.sh',
+        queryParameters: {'language': 'golang'});
+
+    if (result != null) {
+      setState(() {
+        items = result;
+      });
+    }
+  }
+
+  void _handleTopBarRightIconTap(BuildContext context) {
+    Application.router.navigateTo(context, Routes.multipleConditionFilter);
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(
+        title: Text('Trending'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            tooltip: 'Show Snackbar',
+            onPressed: () => _handleTopBarRightIconTap(context),
+          ),
+        ],
+      ),
       body: new Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: _isLoading
